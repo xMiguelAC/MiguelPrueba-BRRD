@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MiguelPrueba.Models.Persona>
+@{
+    ViewData["Title"] = "Personas";
+}
+
+
+<h1>Personas</h1>
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Fecha de nacimiento
+                </th>
+                <th>
+                    Accion
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeNacimiento)
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.ID })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+            else
+            {
+                <h4>No hay ninguna persona</h4>
+            }
+    <br />
+    <input type="button" class="btn btn-primary" value="Agregar una persona" onclick="location.href='@Url.Action("AgregarPersona")'" />
